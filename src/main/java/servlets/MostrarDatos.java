@@ -44,9 +44,13 @@ public class MostrarDatos extends HttpServlet {
 		parametro = request.getParameter("tabla");
 		
 		if(parametro != null) {
-			request.getRequestDispatcher(parametro).forward(request, response);
+			if(parametro.equals("EjercicioServlet") || parametro.equals("EmpleadosServlet")) {
+				request.getRequestDispatcher(parametro).forward(request, response);
+			}else {
+				response.getWriter().append("Parametro erroneo");
+			}
 		}else {
-			response.getWriter().append("No se ha pasado ningun parametro");
+			response.getWriter().append("No se ha pasado ningun parametro tipo tabla");
 		}
 		
 	}
