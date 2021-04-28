@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -24,6 +25,8 @@ import modelos.*;
 @WebServlet("/EjercicioServlet")
 public class EjercicioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Session s;
+	private static Logger log;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,6 +41,10 @@ public class EjercicioServlet extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
+		log = UsoLogger.getLogger(EjercicioServlet.class);
+		s = HibernateUtil.getSessionFactory().openSession();
+		log.info("Sesion adquirida...");
+		
 	}
 
 	/**
@@ -45,9 +52,10 @@ public class EjercicioServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Session s = HibernateUtil.getSessionFactory().openSession();
+		
 		
 		List<Departamentos> dept = DepartamentosDAO.getAllDepartments(s);
+		log.info("Departamentos obtenidos");
 		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
