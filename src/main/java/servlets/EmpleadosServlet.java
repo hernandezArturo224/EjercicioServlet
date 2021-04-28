@@ -118,6 +118,9 @@ public class EmpleadosServlet extends HttpServlet {
 					writer.println(emplead.getDireccion());
 				writer.println("</td>");
 				writer.println("<td style='border: 1px black solid'>");
+					writer.println(emplead.getTelefono());
+				writer.println("</td>");
+				writer.println("<td style='border: 1px black solid'>");
 					writer.println(emplead.getPuesto());
 				writer.println("</td>");
 				writer.println("<td style='border: 1px black solid'>");
